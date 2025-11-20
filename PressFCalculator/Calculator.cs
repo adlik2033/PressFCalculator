@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Xunit;
 namespace PressFCalculator
 {
     public class Calculator
@@ -14,7 +9,8 @@ namespace PressFCalculator
         {
             InitializeExchangeRates();
         }
-
+       
+        [Fact]
         private void InitializeExchangeRates()
         {
             exchangeRates = new Dictionary<string, double>
@@ -26,6 +22,11 @@ namespace PressFCalculator
                 ["RUB_EUR"] = 1.0 / 98.5,
                 ["USD_EUR"] = 1.0 / 1.09
             };
+
+            // Добавьте проверки (assertions)
+            Assert.NotNull(exchangeRates);
+            Assert.Equal(6, exchangeRates.Count);
+            Assert.Equal(90.0, exchangeRates["USD_RUB"]);
         }
 
         public void Run()
